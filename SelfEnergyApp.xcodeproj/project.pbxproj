@@ -1,0 +1,376 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5093F8AE2AAF4015005ED683 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093F8AD2AAF4015005ED683 /* DetailView.swift */; };
+		5093F8B02AB1E5AD005ED683 /* EnergyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093F8AF2AB1E5AD005ED683 /* EnergyType.swift */; };
+		5093F8B22AB1E622005ED683 /* EnergyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093F8B12AB1E622005ED683 /* EnergyValue.swift */; };
+		50FB507C2AA64725002018A4 /* SelfEnergyAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB507B2AA64725002018A4 /* SelfEnergyAppApp.swift */; };
+		50FB507E2AA64725002018A4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB507D2AA64725002018A4 /* ContentView.swift */; };
+		50FB50802AA64727002018A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50FB507F2AA64727002018A4 /* Assets.xcassets */; };
+		50FB50832AA64727002018A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50FB50822AA64727002018A4 /* Preview Assets.xcassets */; };
+		50FB508A2AA64C16002018A4 /* EnergyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB50892AA64C16002018A4 /* EnergyCard.swift */; };
+		50FB50952AA9EF7B002018A4 /* RadialChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB50942AA9EF7B002018A4 /* RadialChart.swift */; };
+		50FB509B2AAB50BF002018A4 /* CircleOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB509A2AAB50BF002018A4 /* CircleOverlay.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5093F8AD2AAF4015005ED683 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		5093F8AF2AB1E5AD005ED683 /* EnergyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyType.swift; sourceTree = "<group>"; };
+		5093F8B12AB1E622005ED683 /* EnergyValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyValue.swift; sourceTree = "<group>"; };
+		50FB50782AA64725002018A4 /* SelfEnergyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfEnergyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		50FB507B2AA64725002018A4 /* SelfEnergyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfEnergyAppApp.swift; sourceTree = "<group>"; };
+		50FB507D2AA64725002018A4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		50FB507F2AA64727002018A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50FB50822AA64727002018A4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		50FB50892AA64C16002018A4 /* EnergyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCard.swift; sourceTree = "<group>"; };
+		50FB50942AA9EF7B002018A4 /* RadialChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialChart.swift; sourceTree = "<group>"; };
+		50FB509A2AAB50BF002018A4 /* CircleOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleOverlay.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50FB50752AA64725002018A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		50FB506F2AA64725002018A4 = {
+			isa = PBXGroup;
+			children = (
+				50FB507A2AA64725002018A4 /* SelfEnergyApp */,
+				50FB50792AA64725002018A4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		50FB50792AA64725002018A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50FB50782AA64725002018A4 /* SelfEnergyApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50FB507A2AA64725002018A4 /* SelfEnergyApp */ = {
+			isa = PBXGroup;
+			children = (
+				50FB50902AA9E7D6002018A4 /* RadialDiagram */,
+				50FB507B2AA64725002018A4 /* SelfEnergyAppApp.swift */,
+				50FB507D2AA64725002018A4 /* ContentView.swift */,
+				5093F8AD2AAF4015005ED683 /* DetailView.swift */,
+				5093F8AF2AB1E5AD005ED683 /* EnergyType.swift */,
+				5093F8B12AB1E622005ED683 /* EnergyValue.swift */,
+				50FB50892AA64C16002018A4 /* EnergyCard.swift */,
+				50FB507F2AA64727002018A4 /* Assets.xcassets */,
+				50FB50812AA64727002018A4 /* Preview Content */,
+			);
+			path = SelfEnergyApp;
+			sourceTree = "<group>";
+		};
+		50FB50812AA64727002018A4 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				50FB50822AA64727002018A4 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		50FB50902AA9E7D6002018A4 /* RadialDiagram */ = {
+			isa = PBXGroup;
+			children = (
+				50FB509A2AAB50BF002018A4 /* CircleOverlay.swift */,
+				50FB50942AA9EF7B002018A4 /* RadialChart.swift */,
+			);
+			path = RadialDiagram;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50FB50772AA64725002018A4 /* SelfEnergyApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50FB50862AA64727002018A4 /* Build configuration list for PBXNativeTarget "SelfEnergyApp" */;
+			buildPhases = (
+				50FB50742AA64725002018A4 /* Sources */,
+				50FB50752AA64725002018A4 /* Frameworks */,
+				50FB50762AA64725002018A4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SelfEnergyApp;
+			productName = SelfEnergyApp;
+			productReference = 50FB50782AA64725002018A4 /* SelfEnergyApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50FB50702AA64725002018A4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					50FB50772AA64725002018A4 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 50FB50732AA64725002018A4 /* Build configuration list for PBXProject "SelfEnergyApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 50FB506F2AA64725002018A4;
+			productRefGroup = 50FB50792AA64725002018A4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50FB50772AA64725002018A4 /* SelfEnergyApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		50FB50762AA64725002018A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50FB50832AA64727002018A4 /* Preview Assets.xcassets in Resources */,
+				50FB50802AA64727002018A4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50FB50742AA64725002018A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50FB50952AA9EF7B002018A4 /* RadialChart.swift in Sources */,
+				5093F8AE2AAF4015005ED683 /* DetailView.swift in Sources */,
+				50FB509B2AAB50BF002018A4 /* CircleOverlay.swift in Sources */,
+				50FB507E2AA64725002018A4 /* ContentView.swift in Sources */,
+				50FB508A2AA64C16002018A4 /* EnergyCard.swift in Sources */,
+				5093F8B02AB1E5AD005ED683 /* EnergyType.swift in Sources */,
+				50FB507C2AA64725002018A4 /* SelfEnergyAppApp.swift in Sources */,
+				5093F8B22AB1E622005ED683 /* EnergyValue.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		50FB50842AA64727002018A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		50FB50852AA64727002018A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		50FB50872AA64727002018A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SelfEnergyApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 2BQ23KF27X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tolight.SelfEnergyApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		50FB50882AA64727002018A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SelfEnergyApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 2BQ23KF27X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tolight.SelfEnergyApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50FB50732AA64725002018A4 /* Build configuration list for PBXProject "SelfEnergyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50FB50842AA64727002018A4 /* Debug */,
+				50FB50852AA64727002018A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50FB50862AA64727002018A4 /* Build configuration list for PBXNativeTarget "SelfEnergyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50FB50872AA64727002018A4 /* Debug */,
+				50FB50882AA64727002018A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 50FB50702AA64725002018A4 /* Project object */;
+}
