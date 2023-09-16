@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DetailView: View {
     
+    
+    
     enum PickerChart {
         case day, week, month, season, year
     }

@@ -12,8 +12,11 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-       RadialChart(physicalValue: 1, emotionValue: 2, intelligenceValue: 3, soulValue: 4)
-            .padding()
+        NavigationView {
+            RadialChart(physicalValue: 1, emotionValue: 2, intelligenceValue: 3, soulValue: 4)
+                .padding()
+                .navigationTitle("SelfEnergy")
+        }
     }
 }
 

@@ -24,29 +24,61 @@ struct RadialChart: View {
     
     var colorArray: [Color] = [.green, .red, .purple, .blue]
     
+    struct SectorValue: Shape {
+        
+        let index: Int
+        let geometry: GeometryProxy
+        let radiusArray: [CGFloat]
+        
+        func path(in rect: CGRect) -> Path {
+            var path = Path()
+            path.move(to: CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2))
+            path.addArc(
+                center: CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2),
+                radius: (min(geometry.size.width, geometry.size.height) / 2) / 5 * radiusArray[index],
+                startAngle: Angle(degrees: Double(index) * 90 + 225),
+                endAngle: Angle(degrees: Double(index + 1) * 90 + 225),
+                clockwise: false
+            )
+            return path
+        }
+    }
+    
+    struct SectorOverlay: Shape {
+        
+        let index: Int
+        let geometry: GeometryProxy
+        
+        func path(in rect: CGRect) -> Path {
+            var path = Path()
+            path.move(to: CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2))
+            path.addArc(
+                center: CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2),
+                radius: (min(geometry.size.width, geometry.size.height) / 2),
+                startAngle: Angle(degrees: Double(index) * 90 + 225),
+                endAngle: Angle(degrees: Double(index + 1) * 90 + 225),
+                clockwise: false
+            )
+            return path
+        }
+    }
+    
     var body: some View {
         ZStack {
             Circle()
                 .fill(.secondary)
             
             ForEach(0..<4) { index in
-                let startAngle = Angle(degrees: Double(index) * 90 + 225)
-                let endAngle = Angle(degrees: Double(index + 1) * 90 + 225)
                 GeometryReader { geometry in
-                    let center = CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    let radius = min(geometry.size.width, geometry.size.height) / 2
-                    Path { path in
-                        path.move(to: center)
-                        path.addArc(
-                            center: center,
-                            radius: radius / 5 * radiusArray[index],
-                            startAngle: startAngle,
-                            endAngle: endAngle,
-                            clockwise: false
-                        )
+                    NavigationLink {
+                        DetailView()
+                    } label: {
+                        SectorValue(index: index, geometry: geometry, radiusArray: radiusArray)
+                            .fill(colorArray[index])
+                            .contentShape(SectorOverlay(index: index, geometry: geometry))
                     }
-                    .fill(colorArray[index])
                 }
+            }
                 .aspectRatio(contentMode: .fit)
                 .overlay {
                     CircleOverlay()
@@ -54,7 +86,7 @@ struct RadialChart: View {
             }
             
         }
-    }
+
 }
 
 struct RadialChart_Previews: PreviewProvider {
