@@ -86,9 +86,10 @@ struct RadialChart: View {
                         label: {
                             SectorValue(index: index, geometry: geometry, radiusArray: radiusArray)
                                 .fill(colorArray[index])
-                                .contentShape(SectorOverlay(index: index, geometry: geometry))
+                                
                         }
                     )
+                    .contentShape(SectorOverlay(index: index, geometry: geometry))
                 }
             }
             .aspectRatio(contentMode: .fit)
