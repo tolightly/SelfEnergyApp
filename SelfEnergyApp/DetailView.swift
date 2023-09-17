@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     
+    var energyType: EnergyType
     
     
     enum PickerChart {
@@ -62,7 +63,7 @@ struct DetailView: View {
                     }
                 }
             }
-            .navigationTitle("Physical")
+            .navigationTitle(energyType.stringValue)
             .toolbar {
                 Button {
                     // Edit values
@@ -83,6 +84,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView()
+        DetailView(energyType: .physical)
     }
 }

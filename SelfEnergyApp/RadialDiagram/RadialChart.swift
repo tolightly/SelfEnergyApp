@@ -10,15 +10,24 @@ import SwiftUI
 struct RadialChart: View {
     var physicalValue: Int
     var emotionValue: Int
-    var intelligenceValue: Int
-    var soulValue: Int
+    var mentalValue: Int
+    var spiritualValue: Int
     
     var radiusArray: [CGFloat] {
         [
         CGFloat(Double(physicalValue)),
         CGFloat(Double(emotionValue)),
-        CGFloat(Double(soulValue)),
-        CGFloat(Double(intelligenceValue))
+        CGFloat(Double(spiritualValue)),
+        CGFloat(Double(mentalValue))
+        ]
+    }
+    
+    var energyTypeArray: [EnergyType] {
+        [
+        EnergyType.physical,
+        EnergyType.emotional,
+        EnergyType.spiritual,
+        EnergyType.mental
         ]
     }
     
@@ -40,6 +49,7 @@ struct RadialChart: View {
                 endAngle: Angle(degrees: Double(index + 1) * 90 + 225),
                 clockwise: false
             )
+            path.closeSubpath()
             return path
         }
     }
@@ -59,6 +69,7 @@ struct RadialChart: View {
                 endAngle: Angle(degrees: Double(index + 1) * 90 + 225),
                 clockwise: false
             )
+            path.closeSubpath()
             return path
         }
     }
@@ -68,29 +79,28 @@ struct RadialChart: View {
             Circle()
                 .fill(.secondary)
             
-            ForEach(0..<4) { index in
-                GeometryReader { geometry in
-                    NavigationLink {
-                        DetailView()
-                    } label: {
-                        SectorValue(index: index, geometry: geometry, radiusArray: radiusArray)
-                            .fill(colorArray[index])
-                            .contentShape(SectorOverlay(index: index, geometry: geometry))
-                    }
+            GeometryReader { geometry in
+                ForEach(0..<4, id: \.self) { index in
+                    NavigationLink(
+                        destination: DetailView(energyType: energyTypeArray[index]),
+                        label: {
+                            SectorValue(index: index, geometry: geometry, radiusArray: radiusArray)
+                                .fill(colorArray[index])
+                                .contentShape(SectorOverlay(index: index, geometry: geometry))
+                        }
+                    )
                 }
             }
-                .aspectRatio(contentMode: .fit)
-                .overlay {
-                    CircleOverlay()
-                }
+            .aspectRatio(contentMode: .fit)
+            .overlay {
+                CircleOverlay()
             }
-            
         }
-
+    }
 }
 
 struct RadialChart_Previews: PreviewProvider {
     static var previews: some View {
-        RadialChart(physicalValue: 5, emotionValue: 3, intelligenceValue: 2, soulValue: 4)
+        RadialChart(physicalValue: 5, emotionValue: 3, mentalValue: 2, spiritualValue: 4)
     }
 }

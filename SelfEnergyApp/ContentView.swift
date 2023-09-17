@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            RadialChart(physicalValue: 1, emotionValue: 2, intelligenceValue: 3, soulValue: 4)
+            RadialChart(physicalValue: 1, emotionValue: 2, mentalValue: 3, spiritualValue: 4)
                 .padding()
                 .navigationTitle("SelfEnergy")
         }

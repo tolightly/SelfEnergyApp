@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct SelfEnergyAppApp: App {
+    @StateObject var dataController = DataController()
+    
+    init() {
+        EnergyTypeTransformer.register()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
