@@ -16,16 +16,19 @@ extension Energy {
         return NSFetchRequest<Energy>(entityName: "Energy")
     }
 
-    @NSManaged public var value: Int16
     @NSManaged public var date: Date?
-    @NSManaged public var energyType: NSObject?
+    @NSManaged public var energyTypeString: String?
+    @NSManaged public var value: Int16
     
-    public var unwrappedDate: Date {
-        date ?? Date.now
+    var energyType: EnergyType? {
+        get {
+            guard let energyTypeString = energyTypeString else { return nil }
+            return EnergyType(rawValue: energyTypeString)
+        }
+        set {
+            energyTypeString = newValue?.rawValue
+        }
     }
-
 }
 
-extension Energy : Identifiable {
 
-}

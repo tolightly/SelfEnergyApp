@@ -19,6 +19,7 @@ struct DetailView: View {
     let example = EnergyValue.example
     
     @State private var pickerChart: PickerChart = .week
+    @State private var isShowingAddView = false
     
     
     var body: some View {
@@ -72,11 +73,14 @@ struct DetailView: View {
                 }
                 
                 Button {
-                    //Add new value
+                    isShowingAddView = true
                 } label: {
                     Image(systemName: "plus")
                 }
             }
+            .sheet(isPresented: $isShowingAddView, content: {
+                    AddDataView(energyType: energyType)
+            })
             .padding()
         }
     }

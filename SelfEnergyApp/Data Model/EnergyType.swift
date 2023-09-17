@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum EnergyType: String {
+public enum EnergyType: String {
+    
     case physical, emotional, mental, spiritual
     
     var stringValue: String {

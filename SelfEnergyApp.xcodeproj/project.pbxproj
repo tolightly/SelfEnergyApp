@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5085E3C72AB6E4350034FF01 /* EnergyDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3C52AB6E4350034FF01 /* EnergyDataModel.xcdatamodeld */; };
-		5085E3CA2AB6E51E0034FF01 /* Energy+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3C82AB6E51E0034FF01 /* Energy+CoreDataClass.swift */; };
-		5085E3CB2AB6E51E0034FF01 /* Energy+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3C92AB6E51E0034FF01 /* Energy+CoreDataProperties.swift */; };
 		5085E3CD2AB6E5440034FF01 /* EnergyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3CC2AB6E5440034FF01 /* EnergyType.swift */; };
 		5085E3CF2AB6F9410034FF01 /* EnergyTypeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3CE2AB6F9410034FF01 /* EnergyTypeTransformer.swift */; };
 		5085E3D12AB6FEEC0034FF01 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3D02AB6FEEC0034FF01 /* DataController.swift */; };
+		5085E3D82AB75ECD0034FF01 /* AddDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3D72AB75ECD0034FF01 /* AddDataView.swift */; };
+		5085E3DC2AB76E1A0034FF01 /* Energy+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3DA2AB76E1A0034FF01 /* Energy+CoreDataClass.swift */; };
+		5085E3DD2AB76E1A0034FF01 /* Energy+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3DB2AB76E1A0034FF01 /* Energy+CoreDataProperties.swift */; };
 		5093F8AE2AAF4015005ED683 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093F8AD2AAF4015005ED683 /* DetailView.swift */; };
 		5093F8B22AB1E622005ED683 /* EnergyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093F8B12AB1E622005ED683 /* EnergyValue.swift */; };
 		50FB507C2AA64725002018A4 /* SelfEnergyAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB507B2AA64725002018A4 /* SelfEnergyAppApp.swift */; };
@@ -21,16 +22,16 @@
 		50FB50832AA64727002018A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50FB50822AA64727002018A4 /* Preview Assets.xcassets */; };
 		50FB508A2AA64C16002018A4 /* EnergyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB50892AA64C16002018A4 /* EnergyCard.swift */; };
 		50FB50952AA9EF7B002018A4 /* RadialChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB50942AA9EF7B002018A4 /* RadialChart.swift */; };
-		50FB509B2AAB50BF002018A4 /* CircleOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB509A2AAB50BF002018A4 /* CircleOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5085E3C62AB6E4350034FF01 /* EnergyDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnergyDataModel.xcdatamodel; sourceTree = "<group>"; };
-		5085E3C82AB6E51E0034FF01 /* Energy+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Energy+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5085E3C92AB6E51E0034FF01 /* Energy+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Energy+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5085E3CC2AB6E5440034FF01 /* EnergyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyType.swift; sourceTree = "<group>"; };
 		5085E3CE2AB6F9410034FF01 /* EnergyTypeTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTypeTransformer.swift; sourceTree = "<group>"; };
 		5085E3D02AB6FEEC0034FF01 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		5085E3D72AB75ECD0034FF01 /* AddDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataView.swift; sourceTree = "<group>"; };
+		5085E3DA2AB76E1A0034FF01 /* Energy+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Energy+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5085E3DB2AB76E1A0034FF01 /* Energy+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Energy+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5093F8AD2AAF4015005ED683 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		5093F8B12AB1E622005ED683 /* EnergyValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyValue.swift; sourceTree = "<group>"; };
 		50FB50782AA64725002018A4 /* SelfEnergyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfEnergyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,7 +41,6 @@
 		50FB50822AA64727002018A4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		50FB50892AA64C16002018A4 /* EnergyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCard.swift; sourceTree = "<group>"; };
 		50FB50942AA9EF7B002018A4 /* RadialChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialChart.swift; sourceTree = "<group>"; };
-		50FB509A2AAB50BF002018A4 /* CircleOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,10 +61,24 @@
 				5093F8B12AB1E622005ED683 /* EnergyValue.swift */,
 				5085E3CC2AB6E5440034FF01 /* EnergyType.swift */,
 				5085E3CE2AB6F9410034FF01 /* EnergyTypeTransformer.swift */,
-				5085E3C82AB6E51E0034FF01 /* Energy+CoreDataClass.swift */,
-				5085E3C92AB6E51E0034FF01 /* Energy+CoreDataProperties.swift */,
+				5085E3DA2AB76E1A0034FF01 /* Energy+CoreDataClass.swift */,
+				5085E3DB2AB76E1A0034FF01 /* Energy+CoreDataProperties.swift */,
+				5085E3C52AB6E4350034FF01 /* EnergyDataModel.xcdatamodeld */,
+				5085E3D92AB7631D0034FF01 /* Views */,
 			);
 			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		5085E3D92AB7631D0034FF01 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				50FB50942AA9EF7B002018A4 /* RadialChart.swift */,
+				50FB507D2AA64725002018A4 /* ContentView.swift */,
+				5093F8AD2AAF4015005ED683 /* DetailView.swift */,
+				5085E3D72AB75ECD0034FF01 /* AddDataView.swift */,
+				50FB50892AA64C16002018A4 /* EnergyCard.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		50FB506F2AA64725002018A4 = {
@@ -87,12 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				5085E3D22AB701040034FF01 /* Data Model */,
-				50FB50902AA9E7D6002018A4 /* RadialDiagram */,
 				50FB507B2AA64725002018A4 /* SelfEnergyAppApp.swift */,
-				50FB507D2AA64725002018A4 /* ContentView.swift */,
-				5093F8AD2AAF4015005ED683 /* DetailView.swift */,
-				5085E3C52AB6E4350034FF01 /* EnergyDataModel.xcdatamodeld */,
-				50FB50892AA64C16002018A4 /* EnergyCard.swift */,
 				50FB507F2AA64727002018A4 /* Assets.xcassets */,
 				50FB50812AA64727002018A4 /* Preview Content */,
 			);
@@ -105,15 +114,6 @@
 				50FB50822AA64727002018A4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		50FB50902AA9E7D6002018A4 /* RadialDiagram */ = {
-			isa = PBXGroup;
-			children = (
-				50FB509A2AAB50BF002018A4 /* CircleOverlay.swift */,
-				50FB50942AA9EF7B002018A4 /* RadialChart.swift */,
-			);
-			path = RadialDiagram;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,17 +186,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5085E3CB2AB6E51E0034FF01 /* Energy+CoreDataProperties.swift in Sources */,
 				5085E3CF2AB6F9410034FF01 /* EnergyTypeTransformer.swift in Sources */,
 				50FB50952AA9EF7B002018A4 /* RadialChart.swift in Sources */,
-				5085E3CA2AB6E51E0034FF01 /* Energy+CoreDataClass.swift in Sources */,
 				5093F8AE2AAF4015005ED683 /* DetailView.swift in Sources */,
 				5085E3C72AB6E4350034FF01 /* EnergyDataModel.xcdatamodeld in Sources */,
-				50FB509B2AAB50BF002018A4 /* CircleOverlay.swift in Sources */,
+				5085E3D82AB75ECD0034FF01 /* AddDataView.swift in Sources */,
+				5085E3DC2AB76E1A0034FF01 /* Energy+CoreDataClass.swift in Sources */,
 				50FB507E2AA64725002018A4 /* ContentView.swift in Sources */,
 				5085E3CD2AB6E5440034FF01 /* EnergyType.swift in Sources */,
 				50FB508A2AA64C16002018A4 /* EnergyCard.swift in Sources */,
 				50FB507C2AA64725002018A4 /* SelfEnergyAppApp.swift in Sources */,
+				5085E3DD2AB76E1A0034FF01 /* Energy+CoreDataProperties.swift in Sources */,
 				5085E3D12AB6FEEC0034FF01 /* DataController.swift in Sources */,
 				5093F8B22AB1E622005ED683 /* EnergyValue.swift in Sources */,
 			);
