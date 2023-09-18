@@ -8,22 +8,27 @@ import Charts
 import SwiftUI
 
 struct DetailView: View {
-    
+
     var energyType: EnergyType
-    
-    
-    enum PickerChart {
-        case day, week, month, season, year
-    }
-    
     let example = EnergyValue.example
     
     @State private var pickerChart: PickerChart = .week
     @State private var isShowingAddView = false
     
+    @FetchRequest var energyArray: FetchedResults<Energy>
+    
+    init(energyType: EnergyType) {
+        self.energyType = energyType
+        _energyArray = FetchRequest(
+            sortDescriptors: [SortDescriptor(\.date, order: .forward)],
+            predicate: NSPredicate(format: "energyType == %@", energyType.rawValue))
+    }
+    
+    var energyArrayForChart: [Energy] {
+        energyArray.compactMap { $0 }
+    }
     
     var body: some View {
-        NavigationStack {
             ScrollView {
                 VStack {
                     Text("75%")
@@ -37,29 +42,21 @@ struct DetailView: View {
                     }
                     .pickerStyle(.segmented)
                     
-                    Chart {
-                        ForEach(example, id: \.self) { item in
-                            LineMark(
-                                x: .value("Days", item.date),
-                                y: .value("Value", item.value)
-                            )
-                            .lineStyle(StrokeStyle(lineCap: .round, lineJoin: .round))
-                        }
-                    }
-                    .chartYAxis {
-                        AxisMarks(values: [0, 1, 2, 3, 4, 5])
-                    }
+                    EnergyChart(energyValueArray: energyArrayForChart, pickerChart: pickerChart)
+                    
                     GroupBox {
                         Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
                     }
                     
                     GroupBox("Last Notes") {
-                        HStack {
-                            Text(EnergyValue.example[0].date.formatted(date: .numeric, time: .shortened))
-                            Spacer()
-                            Text(EnergyValue.example[0].value.formatted(.number))
-                            Spacer()
-                            Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry.")
+                        ForEach(energyArray) { energy in
+                            HStack {
+                                Text("\(energy.value)")
+                                Spacer()
+                                Text(energy.date?.formatted(date: .numeric, time: .shortened) ?? "Error with fetched date")
+                                Spacer()
+                                Text(energy.unwrappedEnergyType?.rawValue ?? "Error with fetch energyType")
+                            }
                         }
                     }
                 }
@@ -83,7 +80,10 @@ struct DetailView: View {
             })
             .padding()
         }
-    }
+}
+
+enum PickerChart {
+    case day, week, month, season, year
 }
 
 struct DetailView_Previews: PreviewProvider {
