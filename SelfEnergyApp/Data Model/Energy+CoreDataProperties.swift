@@ -2,7 +2,7 @@
 //  Energy+CoreDataProperties.swift
 //  SelfEnergyApp
 //
-//  Created by Denys Nazymok on 17.09.2023.
+//  Created by Denys Nazymok on 18.09.2023.
 //
 //
 
@@ -16,19 +16,21 @@ extension Energy {
         return NSFetchRequest<Energy>(entityName: "Energy")
     }
 
-    @NSManaged public var date: Date?
-    @NSManaged public var energyTypeString: String?
     @NSManaged public var value: Int16
-    
-    var energyType: EnergyType? {
+    @NSManaged public var date: Date?
+    @NSManaged public var energyType: String?
+
+    var unwrappedEnergyType: EnergyType? {
         get {
-            guard let energyTypeString = energyTypeString else { return nil }
-            return EnergyType(rawValue: energyTypeString)
+            guard let energyType = energyType else { return nil }
+            return EnergyType(rawValue: energyType)
         }
         set {
-            energyTypeString = newValue?.rawValue
+            energyType = newValue?.rawValue
         }
     }
 }
 
+extension Energy : Identifiable {
 
+}

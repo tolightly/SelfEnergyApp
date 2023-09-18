@@ -9,7 +9,7 @@ import CoreData
 import Foundation
 
 class DataController: ObservableObject {
-    let container = NSPersistentContainer(name: "EnergyDataModel")
+    let container = NSPersistentContainer(name: "DataModelEnergy")
     
     init() {
         container.loadPersistentStores { description, error in
