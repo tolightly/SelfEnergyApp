@@ -24,11 +24,11 @@ struct EnergyDayChart: View {
         if !arrayForChart.isEmpty {
             Chart {
                 ForEach(arrayForChart, id: \.self) { item in
-                    LineMark(
+                    BarMark(
                         x: .value("Hours", Calendar.autoupdatingCurrent.component(.hour, from: item.date ?? Date.now)),
                         y: .value("Value", item.value)
                     )
-                    .lineStyle(StrokeStyle(lineCap: .round, lineJoin: .round))
+//                    .lineStyle(StrokeStyle(lineCap: .round, lineJoin: .round))
                 }
             }
             .chartYAxis {

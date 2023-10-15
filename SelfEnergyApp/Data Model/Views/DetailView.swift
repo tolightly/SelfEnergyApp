@@ -29,10 +29,13 @@ struct DetailView: View {
     }
     
     var body: some View {
+// Загальне ScrollView
             ScrollView {
                 VStack {
+// Повинно відображатися поточне значення енергії, яке буде якось вираховуватись
                     Text("75%")
                         .font(.largeTitle)
+// Picker для вибору часового проміжку графіку
                     Picker("Picker", selection: $pickerChart) {
                         Text("Day").tag(PickerChart.day)
                         Text("Week").tag(PickerChart.week)
@@ -42,33 +45,26 @@ struct DetailView: View {
                     }
                     .pickerStyle(.segmented)
                    
-                    
-// Також непрацююча версія, у якому вибір робить безпосередньо ЧартВью
-//                    EnergyChart(pickerChart: $pickerChart, energyArray: energyArrayForChart, energyType: energyType)
-                    
-                    
-                    
-                    
-                    
-                    
-// Непрацююча версія з різними вью залежно від пікера. Можлива причина несправності - світч не слідкує за оновленням пікера
+ // Chart View, яке відображає різні графіки, залежно від значення пікера
                     switch pickerChart {
                     case .day:
                         EnergyDayChart(energyValueArray: energyArrayForChart)
                     case .week:
                         EnergyWeekChart(energyType: energyType, energyValueArray: energyArrayForChart)
                     case .month:
-                        Text("Month")
+                        EnergyMonthChart(energyType: energyType, energyValueArray: energyArrayForChart)
                     case .season:
                         Text("Season")
                     case .year:
                         Text("Year")
                     }
                     
+// Поради щодо даного виду енегрії
                     GroupBox {
                         Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
                     }
                     
+// Історія записів вибраного виду енергії
                     GroupBox("Last Notes") {
                         ForEach(energyArray) { energy in
                             HStack {
