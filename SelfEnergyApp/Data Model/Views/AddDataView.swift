@@ -64,7 +64,7 @@ struct AddDataView: View {
     }
     
     func setMinuteToZero(date: Date) -> Date {
-        let calendar = Calendar.autoupdatingCurrent
+        let calendar = Calendar.current
         let newMinute = calendar.component(.minute, from: date)
         
         if newMinute != 0 {

@@ -54,9 +54,9 @@ struct DetailView: View {
                     case .month:
                         EnergyMonthChart(energyType: energyType, energyValueArray: energyArrayForChart)
                     case .season:
-                        Text("Season")
+                        EnergySeasonChart(energyType: energyType, energyValueArray: energyArrayForChart)
                     case .year:
-                        Text("Year")
+                        EnergyYearChart(energyType: energyType, energyValueArray: energyArrayForChart)
                     }
                     
 // Поради щодо даного виду енегрії
