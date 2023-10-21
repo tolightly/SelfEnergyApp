@@ -66,13 +66,19 @@ struct DetailView: View {
                     
 // Історія записів вибраного виду енергії
                     GroupBox("Last Notes") {
-                        ForEach(energyArray) { energy in
-                            HStack {
-                                Text("\(energy.value)")
-                                Spacer()
-                                Text(energy.date?.formatted(date: .numeric, time: .shortened) ?? "Error with fetched date")
-                                Spacer()
-                                Text(energy.unwrappedEnergyType?.rawValue ?? "Error with fetch energyType")
+                        NavigationLink {
+                            LastNotesView(energyArray: energyArrayForChart)
+                        } label: {
+                            VStack {
+                                ForEach(energyArrayForChart.suffix(10)) { energy in
+                                    HStack {
+                                        Text("\(energy.value)")
+                                        Spacer()
+                                        Text(energy.date?.formatted(date: .numeric, time: .shortened) ?? "Error with fetched date")
+                                        Spacer()
+                                        Text(energy.unwrappedEnergyType?.rawValue ?? "Error with fetch energyType")
+                                    }
+                                }
                             }
                         }
                     }
@@ -80,12 +86,6 @@ struct DetailView: View {
             }
             .navigationTitle(energyType.stringValue)
             .toolbar {
-                Button {
-                    // Edit values
-                } label: {
-                    Text("Edit")
-                }
-                
                 Button {
                     isShowingAddView = true
                 } label: {

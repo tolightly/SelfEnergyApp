@@ -12,9 +12,8 @@ struct AddDataView: View {
     @Environment(\.dismiss) var dismiss
     @State private var value: Int = 2
     @State private var selectedDate: Date = Date.now
+
     var energyType: EnergyType
-    
-    
     
     var body: some View {
         NavigationStack {
@@ -54,7 +53,7 @@ struct AddDataView: View {
     func save() {
         let energyData = Energy(context: moc)
         energyData.value = Int16(value)
-        energyData.date = selectedDate
+        energyData.date = setMinuteToZero(date: selectedDate)
         energyData.unwrappedEnergyType = energyType
         
         if moc.hasChanges {

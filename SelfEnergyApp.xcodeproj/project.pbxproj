@@ -11,6 +11,7 @@
 		504FAC922AD69C4300A3C597 /* EnergyMonthChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504FAC912AD69C4300A3C597 /* EnergyMonthChart.swift */; };
 		504FAC9A2AE010FA00A3C597 /* EnergySeasonChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504FAC992AE010FA00A3C597 /* EnergySeasonChart.swift */; };
 		504FAC9C2AE0337A00A3C597 /* EnergyYearChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504FAC9B2AE0337A00A3C597 /* EnergyYearChart.swift */; };
+		5082414F2AE438BD00F05C77 /* LastNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5082414E2AE438BD00F05C77 /* LastNotesView.swift */; };
 		5085E3CD2AB6E5440034FF01 /* EnergyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3CC2AB6E5440034FF01 /* EnergyType.swift */; };
 		5085E3D12AB6FEEC0034FF01 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3D02AB6FEEC0034FF01 /* DataController.swift */; };
 		5085E3D82AB75ECD0034FF01 /* AddDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3D72AB75ECD0034FF01 /* AddDataView.swift */; };
@@ -33,6 +34,8 @@
 		504FAC912AD69C4300A3C597 /* EnergyMonthChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyMonthChart.swift; sourceTree = "<group>"; };
 		504FAC992AE010FA00A3C597 /* EnergySeasonChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySeasonChart.swift; sourceTree = "<group>"; };
 		504FAC9B2AE0337A00A3C597 /* EnergyYearChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyYearChart.swift; sourceTree = "<group>"; };
+		5082414E2AE438BD00F05C77 /* LastNotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastNotesView.swift; sourceTree = "<group>"; };
+		508241502AE44F3000F05C77 /* DataModelEnergy v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModelEnergy v2.xcdatamodel"; sourceTree = "<group>"; };
 		5085E3CC2AB6E5440034FF01 /* EnergyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyType.swift; sourceTree = "<group>"; };
 		5085E3D02AB6FEEC0034FF01 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		5085E3D72AB75ECD0034FF01 /* AddDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataView.swift; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 				504FAC8F2AD68FBD00A3C597 /* EnergyWeekChart.swift */,
 				504FAC912AD69C4300A3C597 /* EnergyMonthChart.swift */,
 				504FAC992AE010FA00A3C597 /* EnergySeasonChart.swift */,
+				5082414E2AE438BD00F05C77 /* LastNotesView.swift */,
 				504FAC9B2AE0337A00A3C597 /* EnergyYearChart.swift */,
 			);
 			path = Views;
@@ -202,6 +206,7 @@
 				5093F8AE2AAF4015005ED683 /* DetailView.swift in Sources */,
 				504FAC902AD68FBD00A3C597 /* EnergyWeekChart.swift in Sources */,
 				5085E3D82AB75ECD0034FF01 /* AddDataView.swift in Sources */,
+				5082414F2AE438BD00F05C77 /* LastNotesView.swift in Sources */,
 				5085E3EF2AB888580034FF01 /* Energy+CoreDataProperties.swift in Sources */,
 				50DA99182AD0381700380644 /* EnergyDayChart.swift in Sources */,
 				50FB507E2AA64725002018A4 /* ContentView.swift in Sources */,
@@ -422,6 +427,7 @@
 		5085E3E92AB887BF0034FF01 /* DataModelEnergy.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				508241502AE44F3000F05C77 /* DataModelEnergy v2.xcdatamodel */,
 				5085E3EA2AB887BF0034FF01 /* DataModelEnergy.xcdatamodel */,
 			);
 			currentVersion = 5085E3EA2AB887BF0034FF01 /* DataModelEnergy.xcdatamodel */;
