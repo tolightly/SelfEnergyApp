@@ -5,6 +5,7 @@
 //  Created by Denys Nazymok on 11.09.2023.
 //
 import Charts
+import SwiftData
 import SwiftUI
 
 struct DetailView: View {
@@ -15,17 +16,14 @@ struct DetailView: View {
     @State private var pickerChart: PickerChart = .day
     @State private var isShowingAddView = false
     
-    @FetchRequest var energyArray: FetchedResults<Energy>
+    @Query var energyArray: [Energy]
     
     init(energyType: EnergyType) {
         self.energyType = energyType
-        _energyArray = FetchRequest(
-            sortDescriptors: [SortDescriptor(\.date, order: .forward)],
-            predicate: NSPredicate(format: "energyType == %@", energyType.rawValue))
-    }
-    
-    var energyArrayForChart: [Energy] {
-        energyArray.compactMap { $0 }
+        _energyArray = Query(
+            filter: #Predicate { $0.energyType == energyType.rawValue },
+            sort: [SortDescriptor(\.date, order: .forward)]
+            )
     }
     
     var body: some View {
@@ -48,15 +46,15 @@ struct DetailView: View {
  // Chart View, яке відображає різні графіки, залежно від значення пікера
                     switch pickerChart {
                     case .day:
-                        EnergyDayChart(energyValueArray: energyArrayForChart)
+                        EnergyDayChart(energyValueArray: energyArray)
                     case .week:
-                        EnergyWeekChart(energyType: energyType, energyValueArray: energyArrayForChart)
+                        EnergyWeekChart(energyType: energyType, energyValueArray: energyArray)
                     case .month:
-                        EnergyMonthChart(energyType: energyType, energyValueArray: energyArrayForChart)
+                        EnergyMonthChart(energyType: energyType, energyValueArray: energyArray)
                     case .season:
-                        EnergySeasonChart(energyType: energyType, energyValueArray: energyArrayForChart)
+                        EnergySeasonChart(energyType: energyType, energyValueArray: energyArray)
                     case .year:
-                        EnergyYearChart(energyType: energyType, energyValueArray: energyArrayForChart)
+                        EnergyYearChart(energyType: energyType, energyValueArray: energyArray)
                     }
                     
 // Поради щодо даного виду енегрії
@@ -67,16 +65,16 @@ struct DetailView: View {
 // Історія записів вибраного виду енергії
                     GroupBox("Last Notes") {
                         NavigationLink {
-                            LastNotesView(energyArray: energyArrayForChart)
+                            LastNotesView(energyArray: energyArray)
                         } label: {
                             VStack {
-                                ForEach(energyArrayForChart.suffix(10)) { energy in
+                                ForEach(energyArray.suffix(10)) { energy in
                                     HStack {
-                                        Text("\(energy.value)")
+                                        Text("\(energy.value.formatted())")
                                         Spacer()
-                                        Text(energy.date?.formatted(date: .numeric, time: .shortened) ?? "Error with fetched date")
+                                        Text(energy.date.formatted(date: .numeric, time: .shortened))
                                         Spacer()
-                                        Text(energy.unwrappedEnergyType?.rawValue ?? "Error with fetch energyType")
+                                        Text(energy.energyType)
                                     }
                                 }
                             }

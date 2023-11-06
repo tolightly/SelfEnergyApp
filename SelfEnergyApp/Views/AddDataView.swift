@@ -5,10 +5,11 @@
 //  Created by Denys Nazymok on 17.09.2023.
 //
 import CoreData
+import SwiftData
 import SwiftUI
 
 struct AddDataView: View {
-    @Environment(\.managedObjectContext) var moc
+    @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
     @State private var value: Int = 2
     @State private var selectedDate: Date = Date.now
@@ -41,7 +42,7 @@ struct AddDataView: View {
                     save()
                 }
             }
-            .navigationTitle("Add \(energyType.stringValue) data")
+            .navigationTitle("Add \(energyType.rawValue) data")
             .toolbar {
                 Button("Cancel", role: .cancel) {
                     dismiss()
@@ -51,15 +52,10 @@ struct AddDataView: View {
     }
     
     func save() {
-        let energyData = Energy(context: moc)
-        energyData.value = Int16(value)
-        energyData.date = setMinuteToZero(date: selectedDate)
-        energyData.unwrappedEnergyType = energyType
-        
-        if moc.hasChanges {
-            try? moc.save()
-            dismiss()
-        }
+        let energyData = Energy(value: Double(value), date: setMinuteToZero(date: selectedDate), energyType: energyType)
+        modelContext.insert(energyData)
+        try? modelContext.save()
+        dismiss()
     }
     
     func setMinuteToZero(date: Date) -> Date {

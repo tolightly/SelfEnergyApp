@@ -2,12 +2,11 @@
 //  EnergyType.swift
 //  SelfEnergyApp
 //
-//  Created by Denys Nazymok on 17.09.2023.
+//  Created by Denys Nazymok on 06.11.2023.
 //
-
 import Foundation
 
-public enum EnergyType: String {
+public enum EnergyType: String, Codable {
     
     case physical, emotional, mental, spiritual
     

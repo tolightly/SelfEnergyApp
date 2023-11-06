@@ -6,6 +6,7 @@
 //
 
 import Charts
+import SwiftData
 import SwiftUI
 
 struct EnergyDayChart: View {
@@ -16,7 +17,7 @@ struct EnergyDayChart: View {
     // Відфільтрований масив значень енергії протягом поточного дня
     var arrayForChart: [Energy] {
         energyValueArray.filter {
-            Calendar.current.dateComponents([.day, .month, .year], from: $0.date ?? Date.now) == Calendar.current.dateComponents([.day, .month, .year], from: date)
+            Calendar.current.dateComponents([.day, .month, .year], from: $0.date) == Calendar.current.dateComponents([.day, .month, .year], from: date)
         }
     }
     
@@ -25,10 +26,9 @@ struct EnergyDayChart: View {
             Chart {
                 ForEach(arrayForChart, id: \.self) { item in
                     BarMark(
-                        x: .value("Hours", Calendar.current.component(.hour, from: item.date ?? Date.now)),
+                        x: .value("Hours", Calendar.current.component(.hour, from: item.date)),
                         y: .value("Value", item.value)
                     )
-//                    .lineStyle(StrokeStyle(lineCap: .round, lineJoin: .round))
                 }
             }
             .chartYAxis {
@@ -45,10 +45,14 @@ struct EnergyDayChart: View {
 }
 
 #Preview {
-    @Environment(\.managedObjectContext) var moc
-    let newEnergy = Energy(context: moc)
-    newEnergy.value = Int16(4)
-    newEnergy.date = Date()
-    newEnergy.energyType = "Emotional"
-    return EnergyDayChart(energyValueArray: [newEnergy])
+    do {
+            let config = ModelConfiguration(isStoredInMemoryOnly: true)
+            let container = try ModelContainer(for: Energy.self, configurations: config)
+
+        let example = Energy(value: 3, date: Date.now, energyType: .emotional)
+            return EnergyDayChart(energyValueArray: [example])
+                .modelContainer(container)
+        } catch {
+            fatalError("Failed to create model container.")
+        }
 }
