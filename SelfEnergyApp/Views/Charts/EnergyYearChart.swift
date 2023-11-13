@@ -12,44 +12,64 @@ import SwiftUI
 struct EnergyYearChart: View {
     let calendar = Calendar.current
     // Дата, для якої будується графік
-    var date: Date = Date.now
+    var currentDate: Date = Date.now
     // Масив усіх значень енергії певного виду
     let energyType: EnergyType
     var energyValueArray: [Energy]
+    
+    var startDate: Date {
+        calendar.date(byAdding: .year, value: -1, to: currentDate) ?? currentDate - (60 * 60 * 24 * 365)
+    }
 
-    // Масив значень для графіку, якщо хочемо отримати відомості за останні 365 днів
+    // Масив значень для графіку, якщо хочемо отримати відомості за останній рік
     // Треба подумати, як відокремити місяці різних років
     var yearArray: [Energy] {
-        let startDate: Date = calendar.date(byAdding: .day, value: -365, to: date) ?? date - (60 * 60 * 24 * 365)
-//        print("Start date is: \(startDate)")
-        let dataForYearArray = energyValueArray.filter { $0.date >= startDate && $0.date <= date }
-//        print("dataForWeekArray count: \(dataForMonthArray.count)")
-        var dailyAveragesForYearArray: [Energy] {
+        
+        let dataForYearArray = energyValueArray.filter { $0.date >= startDate && $0.date <= currentDate }
+//        print("dataForWeekArray count: \(dataForYearArray.count)")
+        
+        let numbersOfMonthComponentsArray = Array(Set(dataForYearArray.compactMap { calendar.component(.month, from: $0.date)})).sorted()
+//        print("NumbersOfMonthComponentArray is: \(numbersOfMonthComponentsArray)")
+        
+        var monthlyAveragesForYearArray: [Energy] {
             var array: [Energy] = []
-            for index in 1...365 {
+            
+            for index in numbersOfMonthComponentsArray {
                 let monthEnergyArray = dataForYearArray.filter { calendar.component(.month, from: $0.date) == index }
-//                print("Data for dayArray for index: \(index) is: \(dayEnergyArray.count)")
+//                print("Count for Array for index: \(index) is: \(monthEnergyArray.count)")
+                
                 if !monthEnergyArray.isEmpty {
                     let totalMonthEnergy = monthEnergyArray.reduce(0) { $0 + Double($1.value) }
-//                    print("Total day energy is: \(totalDayEnergy)")
-                    let averageDayEnergy = totalMonthEnergy / Double(monthEnergyArray.count)
-//                    print("Average day energy is: \(averageDayEnergy)")
+//                    print("Total month energy is: \(totalMonthEnergy)")
+                    let averageMonthEnergy = totalMonthEnergy / Double(monthEnergyArray.count)
+//                    print("Average month energy is: \(averageMonthEnergy)")
                     var dateForArray: Date {
                         if let dateForArray = monthEnergyArray.first?.date {
-                           return dateForArray
-                            } else {
-                            return date
+                            let components = calendar.dateComponents([.year, .month], from: dateForArray)
+//                            print("components is: \(components)")
+                            let formattedDateForArray = calendar.date(from: DateComponents (
+                                year: components.year,
+                                month: components.month
+                                )
+                            ) ?? currentDate
+//                            print("formattedDateForArray is: \(formattedDateForArray)")
+                                return formattedDateForArray
+                        }
+                            else {
+                            return currentDate
                         }
                     }
                     
-                    let newEnergy = Energy(value: averageDayEnergy, date: dateForArray, energyType: energyType)
+                    let newEnergy = Energy(value: averageMonthEnergy, date: dateForArray, energyType: energyType)
                     array.append(newEnergy)
                 }
             }
 //            print("Final array count is: \(array.count)")
+//            print("Start date is: \(startDate)")
+//            print("current date is: \(currentDate)")
             return array
         }
-        return dailyAveragesForYearArray
+        return monthlyAveragesForYearArray
     }
     
     
@@ -66,7 +86,7 @@ struct EnergyYearChart: View {
             .chartYAxis {
                 AxisMarks(values: [0, 1, 2, 3, 4, 5])
             }
-            .chartXScale(domain: [Date().advanced(by: -60 * 60 * 24 * 365), Date()])
+            .chartXScale(domain: [startDate, currentDate])
             .chartXAxis {
                 AxisMarks(
                     format: Date.FormatStyle().month(.narrow),

@@ -11,6 +11,9 @@
 		504FAC922AD69C4300A3C597 /* EnergyMonthChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504FAC912AD69C4300A3C597 /* EnergyMonthChart.swift */; };
 		504FAC9A2AE010FA00A3C597 /* EnergySeasonChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504FAC992AE010FA00A3C597 /* EnergySeasonChart.swift */; };
 		504FAC9C2AE0337A00A3C597 /* EnergyYearChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504FAC9B2AE0337A00A3C597 /* EnergyYearChart.swift */; };
+		507405602AFFCE280016C331 /* EnergyStartWeekChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5074055F2AFFCE280016C331 /* EnergyStartWeekChart.swift */; };
+		507405622B0107CA0016C331 /* EnergyStartMonthChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507405612B0107CA0016C331 /* EnergyStartMonthChart.swift */; };
+		507405642B011E1D0016C331 /* EnergyHalfYearChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507405632B011E1D0016C331 /* EnergyHalfYearChart.swift */; };
 		5082414F2AE438BD00F05C77 /* LastNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5082414E2AE438BD00F05C77 /* LastNotesView.swift */; };
 		5085E3D82AB75ECD0034FF01 /* AddDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085E3D72AB75ECD0034FF01 /* AddDataView.swift */; };
 		5093F8AE2AAF4015005ED683 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093F8AD2AAF4015005ED683 /* DetailView.swift */; };
@@ -30,6 +33,9 @@
 		504FAC912AD69C4300A3C597 /* EnergyMonthChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyMonthChart.swift; sourceTree = "<group>"; };
 		504FAC992AE010FA00A3C597 /* EnergySeasonChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySeasonChart.swift; sourceTree = "<group>"; };
 		504FAC9B2AE0337A00A3C597 /* EnergyYearChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyYearChart.swift; sourceTree = "<group>"; };
+		5074055F2AFFCE280016C331 /* EnergyStartWeekChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyStartWeekChart.swift; sourceTree = "<group>"; };
+		507405612B0107CA0016C331 /* EnergyStartMonthChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyStartMonthChart.swift; sourceTree = "<group>"; };
+		507405632B011E1D0016C331 /* EnergyHalfYearChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyHalfYearChart.swift; sourceTree = "<group>"; };
 		5082414E2AE438BD00F05C77 /* LastNotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastNotesView.swift; sourceTree = "<group>"; };
 		5085E3D72AB75ECD0034FF01 /* AddDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataView.swift; sourceTree = "<group>"; };
 		5093F8AD2AAF4015005ED683 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -56,6 +62,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5074055E2AFFCDC60016C331 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				50DA99172AD0381700380644 /* EnergyDayChart.swift */,
+				504FAC8F2AD68FBD00A3C597 /* EnergyWeekChart.swift */,
+				5074055F2AFFCE280016C331 /* EnergyStartWeekChart.swift */,
+				504FAC912AD69C4300A3C597 /* EnergyMonthChart.swift */,
+				507405612B0107CA0016C331 /* EnergyStartMonthChart.swift */,
+				507405632B011E1D0016C331 /* EnergyHalfYearChart.swift */,
+				504FAC992AE010FA00A3C597 /* EnergySeasonChart.swift */,
+				504FAC9B2AE0337A00A3C597 /* EnergyYearChart.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		5085E3D22AB701040034FF01 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,13 +93,9 @@
 				50FB507D2AA64725002018A4 /* ContentView.swift */,
 				50FB50942AA9EF7B002018A4 /* RadialChart.swift */,
 				5093F8AD2AAF4015005ED683 /* DetailView.swift */,
-				50DA99172AD0381700380644 /* EnergyDayChart.swift */,
-				504FAC8F2AD68FBD00A3C597 /* EnergyWeekChart.swift */,
-				504FAC912AD69C4300A3C597 /* EnergyMonthChart.swift */,
-				504FAC992AE010FA00A3C597 /* EnergySeasonChart.swift */,
-				504FAC9B2AE0337A00A3C597 /* EnergyYearChart.swift */,
 				5082414E2AE438BD00F05C77 /* LastNotesView.swift */,
 				5085E3D72AB75ECD0034FF01 /* AddDataView.swift */,
+				5074055E2AFFCDC60016C331 /* Charts */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,11 +206,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				507405602AFFCE280016C331 /* EnergyStartWeekChart.swift in Sources */,
 				5098AD952AF917E1005F69EC /* EnergyValue.swift in Sources */,
 				50FB50952AA9EF7B002018A4 /* RadialChart.swift in Sources */,
 				5098AD932AF91744005F69EC /* EnergyType.swift in Sources */,
 				5093F8AE2AAF4015005ED683 /* DetailView.swift in Sources */,
 				504FAC902AD68FBD00A3C597 /* EnergyWeekChart.swift in Sources */,
+				507405622B0107CA0016C331 /* EnergyStartMonthChart.swift in Sources */,
 				5085E3D82AB75ECD0034FF01 /* AddDataView.swift in Sources */,
 				5082414F2AE438BD00F05C77 /* LastNotesView.swift in Sources */,
 				50DA99182AD0381700380644 /* EnergyDayChart.swift in Sources */,
@@ -203,6 +222,7 @@
 				5098AD912AF9162B005F69EC /* Energy.swift in Sources */,
 				50FB507C2AA64725002018A4 /* SelfEnergyAppApp.swift in Sources */,
 				504FAC9C2AE0337A00A3C597 /* EnergyYearChart.swift in Sources */,
+				507405642B011E1D0016C331 /* EnergyHalfYearChart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

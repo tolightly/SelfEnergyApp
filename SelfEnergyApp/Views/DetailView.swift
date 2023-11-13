@@ -48,11 +48,11 @@ struct DetailView: View {
                     case .day:
                         EnergyDayChart(energyValueArray: energyArray)
                     case .week:
-                        EnergyWeekChart(energyType: energyType, energyValueArray: energyArray)
+                        EnergyStartWeekChart(energyType: energyType, energyValueArray: energyArray)
                     case .month:
-                        EnergyMonthChart(energyType: energyType, energyValueArray: energyArray)
+                        EnergyStartMonthChart(energyType: energyType, energyValueArray: energyArray)
                     case .season:
-                        EnergySeasonChart(energyType: energyType, energyValueArray: energyArray)
+                        EnergyHalfYearChart(energyType: energyType, energyValueArray: energyArray)
                     case .year:
                         EnergyYearChart(energyType: energyType, energyValueArray: energyArray)
                     }

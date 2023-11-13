@@ -29,46 +29,35 @@ struct EnergyHalfYearChart: View {
         let numbersOfWeekComponentsArray = Array(Set(dataForHalfYearArray.compactMap {
             Calendar.current.component(.weekOfYear, from: $0.date)
         })).sorted()
-        print("ComponentsArray is: \(numbersOfWeekComponentsArray)")
         
         var weekAveragesForHalfYearArray: [Energy] {
             var array: [Energy] = []
             
             for index in numbersOfWeekComponentsArray {
                 let weekEnergyArray = dataForHalfYearArray.filter { calendar.component(.weekOfYear, from: $0.date) == index }
-                print("Count weekEnergyArray for index: \(index) is: \(weekEnergyArray.count)")
 
                 if !weekEnergyArray.isEmpty {
                     let totalWeekEnergy = weekEnergyArray.reduce(0) { $0 + Double($1.value) }
-                    print("Total day energy is: \(totalWeekEnergy)")
                     let averageWeekEnergy = totalWeekEnergy / Double(weekEnergyArray.count)
-                    print("Average day energy is: \(averageWeekEnergy)")
                     var dateForArray: Date {
                         if let dateForArray = weekEnergyArray.first?.date {
                             let components = calendar.dateComponents([.year, .month, .weekOfYear], from: dateForArray)
-                            print("components is: \(components)")
                             let formattedDateForArray = calendar.date(from: DateComponents (
                                 year: components.year,
                                 month: components.month,
                                 day: 4,
                                 weekOfYear: components.weekOfYear)
                             ) ?? currentDate
-                            print("formattedData is: \(formattedDateForArray)")
                                 return formattedDateForArray
                         }
                             else {
                             return currentDate
                         }
                     }
-                    print("Date for array is: \(dateForArray)")
-                    print("startDate is: \(startDate)")
-                    print("currentDate is: \(currentDate)")
-                    
                     let newEnergy = Energy(value: averageWeekEnergy, date: dateForArray, energyType: energyType)
                     array.append(newEnergy)
                 }
             }
-            print("Final array count is: \(array.count)")
             return array
         }
         return weekAveragesForHalfYearArray

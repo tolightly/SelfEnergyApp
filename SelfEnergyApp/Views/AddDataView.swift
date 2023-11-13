@@ -34,9 +34,9 @@ struct AddDataView: View {
                             self.selectedDate = setMinuteToZero(date: newDate)
                         }
                     )
-                            
                 )
                     .datePickerStyle(.wheel)
+                    .labelsHidden()
                 
                 Button("Save") {
                     save()
