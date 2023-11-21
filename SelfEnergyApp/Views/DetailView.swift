@@ -15,6 +15,7 @@ struct DetailView: View {
     
     @State private var pickerChart: PickerChart = .day
     @State private var isShowingAddView = false
+    @State private var index = 0
     
     @Query var energyArray: [Energy]
     
@@ -27,74 +28,79 @@ struct DetailView: View {
     }
     
     var body: some View {
-// Загальне ScrollView
-            ScrollView {
-                VStack {
-// Повинно відображатися поточне значення енергії, яке буде якось вираховуватись
-                    Text("75%")
-                        .font(.largeTitle)
-// Picker для вибору часового проміжку графіку
-                    Picker("Picker", selection: $pickerChart) {
-                        Text("Day").tag(PickerChart.day)
-                        Text("Week").tag(PickerChart.week)
-                        Text("Month").tag(PickerChart.month)
-                        Text("3 month").tag(PickerChart.season)
-                        Text("Year").tag(PickerChart.year)
-                    }
-                    .pickerStyle(.segmented)
-                   
- // Chart View, яке відображає різні графіки, залежно від значення пікера
-                    switch pickerChart {
-                    case .day:
-                        EnergyDayChart(energyValueArray: energyArray)
-                    case .week:
-                        EnergyStartWeekChart(energyType: energyType, energyValueArray: energyArray)
-                    case .month:
-                        EnergyStartMonthChart(energyType: energyType, energyValueArray: energyArray)
-                    case .season:
-                        EnergyHalfYearChart(energyType: energyType, energyValueArray: energyArray)
-                    case .year:
-                        EnergyYearChart(energyType: energyType, energyValueArray: energyArray)
-                    }
-                    
-// Поради щодо даного виду енегрії
-                    GroupBox {
-                        Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
-                    }
-                    
-// Історія записів вибраного виду енергії
-                    GroupBox("Last Notes") {
-                        NavigationLink {
-                            LastNotesView(energyArray: energyArray)
-                        } label: {
-                            VStack {
-                                ForEach(energyArray.suffix(10)) { energy in
-                                    HStack {
-                                        Text("\(energy.value.formatted())")
-                                        Spacer()
-                                        Text(energy.date.formatted(date: .numeric, time: .shortened))
-                                        Spacer()
-                                        Text(energy.energyType)
-                                    }
-                                }
+        // Загальне ScrollView
+        ScrollView {
+            VStack {
+                // Повинно відображатися поточне значення енергії, яке буде якось вираховуватись
+                Text("75%")
+                    .font(.largeTitle)
+                // Picker для вибору часового проміжку графіку
+                Picker("Picker", selection: $pickerChart) {
+                    Text("Day").tag(PickerChart.day)
+                    Text("Week").tag(PickerChart.week)
+                    Text("Month").tag(PickerChart.month)
+                    Text("3 month").tag(PickerChart.season)
+                    Text("Year").tag(PickerChart.year)
+                }
+                .pickerStyle(.segmented)
+                
+                
+            }
+            // Chart View, яке відображає різні графіки, залежно від значення пікера
+            switch pickerChart {
+            case .day:
+                EnergyDayChart(energyType: energyType, energyValueArray: energyArray, index: $index)
+            case .week:
+                EnergyStartWeekChart(energyType: energyType, energyValueArray: energyArray, index: $index)
+            case .month:
+                EnergyStartMonthChart(energyType: energyType, energyValueArray: energyArray)
+            case .season:
+                EnergyHalfYearChart(energyType: energyType, energyValueArray: energyArray)
+            case .year:
+                EnergyYearChart(energyType: energyType, energyValueArray: energyArray)
+            }
+            
+            // Поради щодо даного виду енегрії
+            GroupBox {
+                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+            }
+            
+            // Історія записів вибраного виду енергії
+            GroupBox("Last Notes") {
+                NavigationLink {
+                    LastNotesView(energyArray: energyArray)
+                } label: {
+                    VStack {
+                        ForEach(energyArray.suffix(10)) { energy in
+                            HStack {
+                                Text("\(energy.value.formatted())")
+                                Spacer()
+                                Text(energy.date.formatted(date: .numeric, time: .shortened))
+                                Spacer()
+                                Text(energy.energyType)
                             }
                         }
                     }
                 }
             }
-            .navigationTitle(energyType.stringValue)
-            .toolbar {
-                Button {
-                    isShowingAddView = true
-                } label: {
-                    Image(systemName: "plus")
-                }
-            }
-            .sheet(isPresented: $isShowingAddView, content: {
-                    AddDataView(energyType: energyType)
-            })
-            .padding()
         }
+        .navigationTitle(energyType.stringValue)
+        .toolbar {
+            Button {
+                isShowingAddView = true
+            } label: {
+                Image(systemName: "plus")
+            }
+        }
+        .sheet(isPresented: $isShowingAddView, content: {
+            AddDataView(energyType: energyType)
+        })
+        .padding()
+        .onChange(of: pickerChart) { _, _ in
+            index = 0
+        }
+    }
+
 }
 
 enum PickerChart {

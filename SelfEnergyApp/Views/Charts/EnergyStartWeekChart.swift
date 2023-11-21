@@ -16,23 +16,31 @@ struct EnergyStartWeekChart: View {
     let energyType: EnergyType
 // Масив усіх значень енергії певного виду
     var energyValueArray: [Energy]
+    
+    @Binding var index: Int
+    
+    // Дата, для якої будується графік
+    var dateForChart: Date { Calendar.current.date(byAdding: .day, value: index * 7, to: date) ?? date }
+
+    
     var firstDayOfWeek: Date {
-        let components = calendar.dateComponents([.weekOfYear, .year], from: Date())
+        let components = calendar.dateComponents([.weekOfYear, .year], from: dateForChart)
         
         let date = calendar.date(from: DateComponents(
             year: components.year,
             weekday: 2,
             weekOfYear: components.weekOfYear)
         )
-        return date ?? Date()
+        return date ?? dateForChart
     }
-
+    
+    
     
 
 // Відфільтрований масив значень енергії протягом поточного тижня, з початку тижня
     var weekArrayFromStart: [Energy] {
         let dataForWeekArray = energyValueArray.filter {
-            calendar.dateComponents([.weekOfYear, .year], from: $0.date) == calendar.dateComponents([.weekOfYear, .year], from: Date())
+            calendar.dateComponents([.weekOfYear, .year], from: $0.date) == calendar.dateComponents([.weekOfYear, .year], from: dateForChart)
         }
         var dailyAveragesForWeekArray: [Energy] {
             var array: [Energy] = []
@@ -59,18 +67,28 @@ struct EnergyStartWeekChart: View {
         return dailyAveragesForWeekArray
     }
     
+    // Відображення порожнього массиву
+    var emptyArray: [Energy] {
+        let newEnergy = Energy(value: 0, date: date, energyType: energyType)
+        return [newEnergy]
+    }
+    
     
     
     var body: some View {
-        if !weekArrayFromStart.isEmpty {
+        VStack {
+            Text("\(firstDayOfWeek.formatted(date: .long, time: .omitted)) - \(firstDayOfWeek.advanced(by: 60 * 60 * 23 * 7).formatted(date: .long, time: .omitted))")
+            
             Chart {
-                ForEach(weekArrayFromStart, id: \.self) { item in
+                ForEach(weekArrayFromStart.isEmpty ? emptyArray : weekArrayFromStart, id: \.self) { item in
                     BarMark(
-                        x: .value("Day", item.date),
-                        y: .value("Value", item.value)
+                        x: .value("Days", item.date),
+                        y: .value("Value", item.value),
+                        width: 15
                     )
                 }
             }
+            .frame(width: 400, height: 300)
             .chartYScale(domain: [0, 5])
             .chartYAxis {
                 AxisMarks(values: [0, 1, 2, 3, 4, 5])
@@ -82,10 +100,19 @@ struct EnergyStartWeekChart: View {
                     values: .automatic(desiredCount: 7)
                 )
             }
+            .gesture(
+                DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                    .onEnded { value in
+                        if value.translation.width > 0 {
+                                index -= 1
+                        } else if value.translation.width < 0 {
+                                index += 1
+                        }
+                    }
+            )
             .padding()
-        } else {
-            Text("No data for this week")
         }
+        .animation(.smooth, value: index)
     }
 }
 
@@ -104,7 +131,7 @@ struct EnergyStartWeekChart: View {
             Energy(value: 2, date: Date.now - 1 * 24 * 60 * 60, energyType: .emotional),
             Energy(value: 4, date: Date.now - 0 * 24 * 60 * 60, energyType: .emotional)
             ]
-            return EnergyDayChart(energyValueArray: example)
+        return EnergyStartWeekChart(energyType: .emotional, energyValueArray: example, index: .constant(0))
                 .modelContainer(container)
         } catch {
             fatalError("Failed to create model container.")

@@ -76,7 +76,7 @@ struct EnergyMonthChart: View {
             }
             .padding()
         } else {
-            Text("No data for this month")
+            EmptyChart()
         }
     }
 }
@@ -96,7 +96,7 @@ struct EnergyMonthChart: View {
             Energy(value: 2, date: Date.now - 1 * 24 * 60 * 60, energyType: .emotional),
             Energy(value: 4, date: Date.now - 0 * 24 * 60 * 60, energyType: .emotional)
             ]
-            return EnergyDayChart(energyValueArray: example)
+        return EnergyMonthChart(energyType: .emotional, energyValueArray: example)
                 .modelContainer(container)
         } catch {
             fatalError("Failed to create model container.")
