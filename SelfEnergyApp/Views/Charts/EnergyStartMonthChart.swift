@@ -11,25 +11,14 @@ import SwiftUI
 struct EnergyStartMonthChart: View {
     let calendar = Calendar.current
     // Дата, для якої будується графік
-    var currentDate: Date = Date.now
+    var currentDate: Date = Calendar.current.date(bySettingHour: 00, minute: 00, second: 00, of: Date()) ?? Date()
     // Масив усіх значень енергії певного виду
     let energyType: EnergyType
     var energyValueArray: [Energy]
     // Індекс, який повинен коригувати зміну місяця при гортанні графіку вправо-вліво
-    let chartIndex: Int = 0
+    @Binding var index: Int
     // Місяць, для якого вираховується графік, з урахуванням індекса
-    var monthForArray: Date {
-        let components = calendar.dateComponents([.month, .year], from: Date())
-        if let date = calendar.date(from: DateComponents(
-            year: components.year,
-            month: components.month! + chartIndex
-            )
-        ) {
-            return date
-        } else {
-            return Date()
-        }
-    }
+    var monthForArray: Date { calendar.date(byAdding: .month, value: index, to: currentDate) ?? currentDate }
     
     var countDaysInMonth: Range<Int>? { return Calendar.current.range(of: .day, in: .month, for: monthForArray)
     }
@@ -84,30 +73,50 @@ struct EnergyStartMonthChart: View {
         return dailyAveragesForWeekArray
     }
     
+    // Відображення порожнього массиву
+    var emptyArray: [Energy] {
+        let newEnergy = Energy(value: 0, date: currentDate, energyType: energyType)
+        return [newEnergy]
+    }
+    
     var body: some View {
-        if !monthArray.isEmpty {
+        VStack {
+            Text("\(monthForArray.formatted(Date.FormatStyle().month(.wide))) \(monthForArray.formatted(Date.FormatStyle().year()))")
+            
             Chart {
-                ForEach(monthArray, id: \.self) { item in
-                    BarMark(
-                        x: .value("Days", item.date),
-                        y: .value("Value", item.value)
+            ForEach(monthArray.isEmpty ? emptyArray : monthArray) { item in
+                        BarMark(
+                            x: .value("Days", item.date),
+                            y: .value("Value", item.value),
+                            width: 12
+                        )
+                    }
+                }
+                .frame(width: 400, height: 300)
+                .chartYScale(domain: [0, 5])
+                .chartYAxis {
+                    AxisMarks(values: [0, 1, 2, 3, 4, 5])
+                }
+                .chartXScale(domain: [firstDayOfMonth, lastDayOfMonth])
+                .chartXAxis {
+                    AxisMarks(
+                        format: Date.FormatStyle().day(.defaultDigits),
+                        values: .automatic(desiredCount: 5)
                     )
                 }
-            }
-            .chartYAxis {
-                AxisMarks(values: [0, 1, 2, 3, 4, 5])
-            }
-            .chartXScale(domain: [firstDayOfMonth, lastDayOfMonth])
-            .chartXAxis {
-                AxisMarks(
-                    format: Date.FormatStyle().day(.defaultDigits),
-                    values: .automatic(desiredCount: 5)
+                .gesture(
+                    DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                        .onEnded { value in
+                            if value.translation.width > 0 {
+                                index -= 1
+                            } else if value.translation.width < 0 {
+                                index += 1
+                            }
+                        }
                 )
-            }
-            .padding()
-        } else {
-            EmptyChart()
+                .padding()
         }
+        .animation(.smooth, value: index)
     }
 }
 
@@ -126,7 +135,7 @@ struct EnergyStartMonthChart: View {
             Energy(value: 2, date: Date.now - 1 * 24 * 60 * 60, energyType: .emotional),
             Energy(value: 4, date: Date.now - 0 * 24 * 60 * 60, energyType: .emotional)
             ]
-        return EnergyStartMonthChart(energyType: .emotional, energyValueArray: example)
+        return EnergyStartMonthChart(energyType: .emotional, energyValueArray: example, index: .constant(0))
                 .modelContainer(container)
         } catch {
             fatalError("Failed to create model container.")

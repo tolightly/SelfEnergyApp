@@ -53,11 +53,11 @@ struct DetailView: View {
             case .week:
                 EnergyStartWeekChart(energyType: energyType, energyValueArray: energyArray, index: $index)
             case .month:
-                EnergyStartMonthChart(energyType: energyType, energyValueArray: energyArray)
+                EnergyStartMonthChart(energyType: energyType, energyValueArray: energyArray, index: $index)
             case .season:
-                EnergyHalfYearChart(energyType: energyType, energyValueArray: energyArray)
+                EnergyHalfYearChart(energyType: energyType, energyValueArray: energyArray, index: $index)
             case .year:
-                EnergyYearChart(energyType: energyType, energyValueArray: energyArray)
+                EnergyYearChart(energyType: energyType, energyValueArray: energyArray, index: $index)
             }
             
             // Поради щодо даного виду енегрії
