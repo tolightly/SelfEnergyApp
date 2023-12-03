@@ -107,7 +107,7 @@ struct EnergyYearChart: View {
                         .annotation(position: .top) {
                             GroupBox {
                                 VStack {
-                                    Text("Date: \(item.date.formatted(date: .abbreviated, time: .omitted))")
+                                    Text("Date: \(item.date.formatted(.dateTime.month(.wide).year()))")
                                     Text("Value: \(String(format: "%.2f", item.value))")
                                 }
                                 .font(.caption)
@@ -159,7 +159,9 @@ struct EnergyYearChart: View {
                                 if value.translation.width > 0 {
                                     index -= 1
                                 } else if value.translation.width < 0 {
-                                    index += 1
+                                    else index < 0 {
+                                        index += 1
+                                    }
                                 }
                             }
                         )

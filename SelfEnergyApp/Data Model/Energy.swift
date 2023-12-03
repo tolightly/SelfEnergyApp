@@ -5,13 +5,11 @@
 //  Created by Denys Nazymok on 06.11.2023.
 //
 
-import Charts
 import Foundation
 import SwiftData
 
 @Model
 class Energy {
-    
     var value: Double
     @Attribute(.unique) var date: Date
     var energyType: String
