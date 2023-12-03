@@ -114,8 +114,6 @@ struct EnergyWeekChart: View {
                 )
             }
             .padding()
-        } else {
-            EmptyChart()
         }
     }
 }

@@ -75,8 +75,6 @@ struct EnergyMonthChart: View {
                 )
             }
             .padding()
-        } else {
-            EmptyChart()
         }
     }
 }

@@ -18,6 +18,8 @@ struct EnergyYearChart: View {
     var energyValueArray: [Energy]
     
     @Binding var index: Int
+    @State private var selectedDate: Date? = nil
+    
     var indexOffset: Double { 60 * 60 * 24 * 365 * Double(index) }
     
     var startDate: Date {
@@ -25,7 +27,7 @@ struct EnergyYearChart: View {
     }
     
     var endDate: Date {
-        calendar.date(byAdding: .year, value: index, to: currentDate) ?? currentDate - indexOffset
+        calendar.date(byAdding: .year, value: index, to: currentDate) ?? currentDate + indexOffset
     }
 
     // Масив значень для графіку, якщо хочемо отримати відомості за останній рік
@@ -78,6 +80,15 @@ struct EnergyYearChart: View {
         return [newEnergy, newEnergy2]
     }
     
+    var averageValue: Double {
+        if yearArray.isEmpty {
+            return 0
+        } else {
+            let totalValue = yearArray.reduce(0) { $0 + $1.value }
+            return totalValue / Double(yearArray.count)
+        }
+    }
+    
     
     var body: some View {
         VStack {
@@ -85,11 +96,38 @@ struct EnergyYearChart: View {
             
             Chart {
                 ForEach(yearArray.isEmpty ? emptyArray : yearArray) { item in
+                    
+                    if let selectedDate, calendar.component(.month, from: selectedDate) == calendar.component(.month, from: item.date) {
+                        RuleMark(
+                            x: .value("Date", item.date),
+                            yStart: .value("Value", 5),
+                            yEnd: .value("Value", item.value)
+                        )
+                        .foregroundStyle(.secondary)
+                        .annotation(position: .top) {
+                            GroupBox {
+                                VStack {
+                                    Text("Date: \(item.date.formatted(date: .abbreviated, time: .omitted))")
+                                    Text("Value: \(String(format: "%.2f", item.value))")
+                                }
+                                .font(.caption)
+                            }
+                        }
+                    }
+                    
                     BarMark(
                         x: .value("Months", item.date),
                         y: .value("Value", item.value),
                         width: 15
                     )
+                }
+                
+                if averageValue != 0 {
+                    RuleMark(y: .value("Average value", averageValue))
+                        .foregroundStyle(.red)
+                        .annotation {
+                            Text(String(format: "%.2f", averageValue))
+                        }
                 }
             }
             .frame(width: 400, height: 300)
@@ -104,16 +142,29 @@ struct EnergyYearChart: View {
                     values: .automatic(desiredCount: 5)
                 )
             }
-            .gesture(
-                DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                    .onEnded { value in
-                        if value.translation.width > 0 {
-                            index -= 1
-                        } else if value.translation.width < 0 {
-                            index += 1
+            .chartOverlay { chartProxy in
+                GeometryReader { geometryProxy in
+                    Rectangle()
+                        .fill(.clear)
+                        .contentShape(Rectangle())
+                        .onTapGesture { location in
+                            let currentX = location.x - geometryProxy[chartProxy.plotFrame!].origin.x
+                            guard currentX <= chartProxy.plotSize.width else { return }
+                            guard let date = chartProxy.value(atX: currentX, as: Date.self) else { return }
+                            selectedDate = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: date)
                         }
-                    }
-            )
+                        .gesture(
+                        DragGesture()
+                            .onEnded { value in
+                                if value.translation.width > 0 {
+                                    index -= 1
+                                } else if value.translation.width < 0 {
+                                    index += 1
+                                }
+                            }
+                        )
+                }
+            }
             .padding()
         }
         .animation(.smooth, value: index)

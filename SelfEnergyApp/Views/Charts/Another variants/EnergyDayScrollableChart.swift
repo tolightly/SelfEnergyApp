@@ -42,8 +42,6 @@ struct EnergyDayScrollableChart: View {
                     )
                 }
                 .padding()
-            } else {
-                EmptyChart()
             }
         }
     }

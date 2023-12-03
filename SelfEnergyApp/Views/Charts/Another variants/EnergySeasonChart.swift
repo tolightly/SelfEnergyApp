@@ -76,8 +76,6 @@ struct EnergySeasonChart: View {
                 )
             }
             .padding()
-        } else {
-            EmptyChart()
         }
     }
 }

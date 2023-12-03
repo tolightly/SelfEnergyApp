@@ -19,6 +19,8 @@ struct EnergyHalfYearChart: View {
     
     // Індекс для зміщення наступного графіку
     @Binding var index: Int
+    @State private var selectedDate: Date? = nil
+    
     var offsetMonthIndex: Int { 6 * index }
     var offsetSecondIndex: Double { 60 * 60 * 24 * 183 * Double(index) }
     
@@ -48,21 +50,7 @@ struct EnergyHalfYearChart: View {
                 if !weekEnergyArray.isEmpty {
                     let totalWeekEnergy = weekEnergyArray.reduce(0) { $0 + Double($1.value) }
                     let averageWeekEnergy = totalWeekEnergy / Double(weekEnergyArray.count)
-//                    var dateForArray: Date {
-//                        if let dateForArray = weekEnergyArray.first?.date {
-//                            let components = calendar.dateComponents([.year, .month, .weekOfYear], from: dateForArray)
-//                            let formattedDateForArray = calendar.date(from: DateComponents (
-//                                year: components.year,
-//                                month: components.month,
-//                                day: 4,
-//                                weekOfYear: components.weekOfYear)
-//                            ) ?? currentDate
-//                                return formattedDateForArray
-//                        }
-//                            else {
-//                            return currentDate
-//                        }
-//                    }
+
                     var dateForArray: Date {
                         if let date = weekEnergyArray.first?.date {
                             let dateForArray = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: date) ?? date
@@ -83,10 +71,18 @@ struct EnergyHalfYearChart: View {
     
     // Відображення порожнього массиву
     var emptyArray: [Energy] {
-        let newEnergy = Energy(value: 0, date: currentDate, energyType: energyType)
+        let newEnergy = Energy(value: 0, date: endDate, energyType: energyType)
         return [newEnergy]
     }
     
+    var averageValue: Double {
+        if halfYearArray.isEmpty {
+            return 0
+        } else {
+            let totalValue = halfYearArray.reduce(0) { $0 + $1.value }
+            return totalValue / Double(halfYearArray.count)
+        }
+    }
     
     var body: some View {
         VStack {
@@ -94,11 +90,38 @@ struct EnergyHalfYearChart: View {
             
             Chart {
                 ForEach(halfYearArray.isEmpty ? emptyArray : halfYearArray) { item in
+                    
+                    if let selectedDate, calendar.component(.weekOfYear, from: selectedDate) == calendar.component(.weekOfYear, from: item.date) {
+                        RuleMark(
+                            x: .value("Day", item.date),
+                            yStart: .value("Value", 5),
+                            yEnd: .value("Value", item.value)
+                        )
+                        .foregroundStyle(.gray)
+                        .annotation(position: .top) {
+                            GroupBox {
+                                VStack {
+                                    Text("Date: \(item.date.formatted(date: .abbreviated, time: .omitted))")
+                                    Text("Value: \(String(format: "%.2f", item.value))")
+                                }
+                                .font(.caption)
+                            }
+                        }
+                    }
+                    
                     BarMark(
                         x: .value("Weeks", item.date),
                         y: .value("Value", item.value),
                         width: 9
                     )
+                }
+                
+                if averageValue != 0 {
+                    RuleMark(y: .value("Average value", averageValue))
+                        .foregroundStyle(.red)
+                        .annotation {
+                            Text(String(format: "%.2f", averageValue))
+                        }
                 }
             }
             .frame(width: 400, height: 300)
@@ -106,23 +129,36 @@ struct EnergyHalfYearChart: View {
             .chartYAxis {
                 AxisMarks(values: [0, 1, 2, 3, 4, 5])
             }
-            .chartXScale(domain: [startDate, currentDate])
+            .chartXScale(domain: [startDate, endDate])
             .chartXAxis {
                 AxisMarks(
                     format: Date.FormatStyle().month(.abbreviated),
                     values: .automatic(desiredCount: 6)
                 )
             }
-            .gesture(
-                DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                    .onEnded { value in
-                        if value.translation.width > 0 {
-                            index -= 1
-                        } else if value.translation.width < 0 {
-                            index += 1
+            .chartOverlay { chartProxy in
+                GeometryReader { geometryProxy in
+                    Rectangle()
+                        .fill(.clear)
+                        .contentShape(Rectangle())
+                        .onTapGesture { location in
+                            let currentX = location.x - geometryProxy[chartProxy.plotFrame!].origin.x
+                            guard currentX <= chartProxy.plotSize.width else { return }
+                            guard let date = chartProxy.value(atX: currentX, as: Date.self) else { return }
+                            selectedDate = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: date)
                         }
-                    }
-            )
+                        .gesture(
+                            DragGesture(minimumDistance: 30, coordinateSpace: .local)
+                                .onEnded { value in
+                                    if value.translation.width > 0 {
+                                        index -= 1
+                                    } else if value.translation.width < 0 {
+                                        index += 1
+                                    }
+                                }
+                        )
+                }
+            }
             .padding()
         }
         .animation(.smooth, value: index)
