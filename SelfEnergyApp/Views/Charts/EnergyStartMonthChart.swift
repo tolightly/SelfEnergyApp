@@ -161,7 +161,7 @@ struct EnergyStartMonthChart: View {
                                         if value.translation.width > 0 {
                                             index -= 1
                                         } else if value.translation.width < 0 {
-                                            else index < 0 {
+                                            if index < 0 {
                                                 index += 1
                                             }
                                         }
